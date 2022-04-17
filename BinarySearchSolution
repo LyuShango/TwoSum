@@ -1,0 +1,32 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int len = nums.length;
+        int[] ans = new int[2];
+        int[] copy = Arrays.copyOf(nums, len);
+        Arrays.sort(copy);                                                //Sort the Array in order to use Binary Search
+        for(int i=0; i<len-1; i++){
+            int j = Arrays.binarySearch(copy, i+1, len, target-copy[i]);
+            if(j>=0){
+                for(int x=0; x<len; x++){
+                    if(nums[x]==copy[i]){
+                        ans[0] = x;
+                        copy[i] = 2147483647;                             //Cover the element which have already founded in the nums
+                        continue;
+                    }
+                    if(nums[x]==copy[j]){
+                        ans[1] = x;
+                        copy[j] = 2147483647;                             //Cover the element which have already founded in the nums
+                        continue;
+                    }
+                }          
+                if(ans[0]>ans[1]){
+                    int temp = ans[1];
+                    ans[1] = ans[0];
+                    ans[0] = temp;
+                }
+                return ans;
+            }
+        }
+        return ans;
+    }
+}
