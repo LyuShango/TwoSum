@@ -1,1 +1,2 @@
 # TwoSum
+Solution of TwoSum
